@@ -1,6 +1,10 @@
 package model;
 
+import java.util.logging.Logger;
+
 public class User {
+	private static final Logger LOGGER = Logger.getLogger( User.class.getName() );
+
 	int id;
 	String name;
 	String username;

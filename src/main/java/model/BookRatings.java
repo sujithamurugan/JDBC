@@ -1,6 +1,10 @@
 package model;
 
+import java.util.logging.Logger;
+
 public class BookRatings {
+	private static final Logger LOGGER = Logger.getLogger( BookRatings.class.getName() );
+
 	int userid;
 	int bookid;
 	int rating;

@@ -1,12 +1,16 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import model.BookInventory;
 import util.ConnectionUtil;
 
 public class BookInventoryDAO {
+	private static final Logger LOGGER = Logger.getLogger(BookInventoryDAO.class.getName() );
+
 	private JdbcTemplate jdbcTemplate= ConnectionUtil.getJdbcTemplate();
 	
 	public List<BookInventory> findAll(){
@@ -47,6 +51,6 @@ public class BookInventoryDAO {
 	    String sql = "DELETE FROM BOOKINVENTORY WHERE bookid=?";
 	    jdbcTemplate.update(sql, bookid);
 	    
-	    System.out.println("Successfully deleted");
+	    LOGGER.info("Successfully deleted");
 	}
 }

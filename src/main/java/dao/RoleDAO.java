@@ -1,12 +1,17 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import model.Role;
 import util.ConnectionUtil;
 
 public class RoleDAO {
+	private static final Logger LOGGER = Logger.getLogger( RoleDAO.class.getName() );
+
+
 	private JdbcTemplate jdbcTemplate= ConnectionUtil.getJdbcTemplate();
 	
 	
@@ -30,16 +35,16 @@ public class RoleDAO {
 	}
 	
 	public void saveOrUpdate(Role role) {
-	    if (role.getUserid() < 0) {
+	    if (role.getId() < 0) {
 	        // update
 	        String sql = "UPDATE ROLE SET name=? "
-	                    + " WHERE user_id=?";
-	        jdbcTemplate.update(sql, role.getName(), role.getUserid());
+	                    + " WHERE userid=?";
+	        jdbcTemplate.update(sql, role.getName(), role.getId());
 	    } else {
 	        // insert
-	        String sql = "INSERT INTO ROLE (user_id,name)"
+	        String sql = "INSERT INTO ROLE (userid,name)"
 	                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	        jdbcTemplate.update(sql, role.getUserid(), role.getName());
+	        jdbcTemplate.update(sql, role.getId(), role.getName());
 	    }
 	 
 	}
@@ -48,7 +53,7 @@ public class RoleDAO {
 	    String sql = "DELETE FROM ROLE WHERE userid=?";
 	    jdbcTemplate.update(sql, userid);
 	    
-	    System.out.println("Successfully deleted");
+	    LOGGER.info("Successfully deleted");
 	}
 	
 

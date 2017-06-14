@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import model.User;
 import util.ConnectionUtil;
@@ -8,6 +9,8 @@ import util.ConnectionUtil;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 public class UserDAO {
+	private static final Logger LOGGER = Logger.getLogger( UserDAO.class.getName() );
+
 	private JdbcTemplate jdbcTemplate= ConnectionUtil.getJdbcTemplate();
 	
 	
@@ -43,7 +46,7 @@ public class UserDAO {
 	                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        jdbcTemplate.update(sql, user.getId(), user.getName(),
 	                user.getUsername(),user.getPassword(),user.getMobileno(),
-	                user.getEmailid(),user.getActive(),user.getRole());
+	                user.getEmailid(),user.isActive(),user.getRole());
 	    }
 	 
 	}
@@ -52,7 +55,7 @@ public class UserDAO {
 	    String sql = "DELETE FROM USER WHERE id=?";
 	    jdbcTemplate.update(sql, id);
 	    
-	    System.out.println("Successfully deleted");
+	    LOGGER.info("Successfully deleted");
 	}
 	
 

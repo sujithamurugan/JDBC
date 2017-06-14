@@ -1,12 +1,16 @@
 package dao;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import model.BookSales;
 import util.ConnectionUtil;
 
 public class BookSalesDAO {
+	private static final Logger LOGGER = Logger.getLogger( BookSalesDAO.class.getName() );
+
 
 	private JdbcTemplate jdbcTemplate= ConnectionUtil.getJdbcTemplate();
 	
@@ -52,7 +56,7 @@ public class BookSalesDAO {
 	    String sql = "DELETE FROM BOOKSALES WHERE salesid=?";
 	    jdbcTemplate.update(sql, salesid);
 	    
-	    System.out.println("Successfully deleted");
+	   LOGGER.info("Successfully deleted");
 	}
 	
 

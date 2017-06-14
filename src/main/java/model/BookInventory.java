@@ -1,6 +1,10 @@
 package model;
 
+import java.util.logging.Logger;
+
 public class BookInventory {
+	private static final Logger LOGGER = Logger.getLogger( BookInventory.class.getName() );
+
 	int bookid;
 	int quantity;
 	public int getBookid() {

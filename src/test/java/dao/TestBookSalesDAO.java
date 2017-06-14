@@ -1,8 +1,12 @@
 package dao;
 
+import java.util.logging.Logger;
+
 import dao.BookSalesDAO;
 
 public class TestBookSalesDAO {
+
+
 	public static void main(String[]args)
 	{
 	

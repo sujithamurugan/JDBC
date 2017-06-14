@@ -1,6 +1,10 @@
 package model;
 
+import java.util.logging.Logger;
+
 public class Book {
+	private static final Logger LOGGER = Logger.getLogger(Book.class.getName() );
+
 	int isbn;
 	String author;
 	String content;
